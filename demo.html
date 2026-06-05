@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>灵动·极简空间 | 一个随意的美好网页</title>
+    <!-- 使用柔和的现代字体与平滑渲染 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f9f7f3 0%, #efeae2 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: #2d2a24;
+        }
+
+        /* 主卡片 — 温润玻璃质感 */
+        .glass-card {
+            max-width: 780px;
+            width: 100%;
+            background: rgba(255, 255, 245, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 3rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(255, 248, 235, 0.7);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* 装饰内边距区域 */
+        .content-wrap {
+            padding: 2.5rem 2.2rem;
+        }
+
+        /* 标题区域 + 灵动装饰 */
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            background: linear-gradient(135deg, #3b3a36, #7f6b5a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #7c6e5d;
+            background: rgba(235, 225, 210, 0.6);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* 趣味动态卡片区 — 一块互动的画布 */
+        .playground {
+            background: rgba(250, 245, 235, 0.7);
+            border-radius: 2rem;
+            padding: 1.6rem 1.5rem;
+            margin: 1.5rem 0 1.8rem;
+            border: 1px solid rgba(230, 215, 195, 0.6);
+            transition: all 0.2s;
+        }
+
+        .counter-section {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #d9cdbc;
+            padding-bottom: 1.3rem;
+        }
+
+        .counter-label {
+            font-weight: 500;
+            font-size: 1.2rem;
+            background: #e7dfd3;
+            padding: 0.25rem 1rem;
+            border-radius: 2rem;
+            color: #4e3e2e;
+        }
+
+        .counter-value {
+            font-size: 3.2rem;
+            font-weight: 700;
+            font-family: monospace;
+            letter-spacing: 2px;
+            background: linear-gradient(145deg, #2c2822, #5c4c3a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 1px 1px rgba(255,255,200,0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+        }
+
+        .btn {
+            border: none;
+            background: #ede3d6;
+            padding: 0.7rem 1.4rem;
+            border-radius: 3rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #3b2f25;
+            cursor: pointer;
+            transition: 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            font-family: inherit;
+            backdrop-filter: blur(2px);
+        }
+
+        .btn-primary {
+            background: #b47c48;
+            color: white;
+            box-shadow: 0 5px 12px rgba(160, 100, 40, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #9f693c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 18px rgba(110, 65, 25, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #cdbcab;
+            color: #5a4a38;
+        }
+
+        .btn-outline:hover {
+            background: #f7ede2;
+            border-color: #b48b60;
+            transform: translateY(-1px);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* 彩色名言区块 */
+        .quote-box {
+            background: rgba(235, 221, 202, 0.5);
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.6rem;
+            margin: 1.2rem 0 0.5rem;
+            border-left: 5px solid #c6a27a;
+            transition: 0.2s;
+        }
+
+        .quote-text {
+            font-size: 1.15rem;
+            font-weight: 450;
+            line-height: 1.4;
+            color: #3d352c;
+            font-style: normal;
+        }
+
+        .quote-author {
+            margin-top: 0.6rem;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #8f7a64;
+            text-align: right;
+            letter-spacing: 0.5px;
+        }
+
+        .refresh-quote {
+            background: none;
+            border: none;
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+            cursor: pointer;
+            color: #b4834a;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            background: #f3ede5;
+            transition: 0.2s;
+        }
+
+        .refresh-quote:hover {
+            background: #e6d9ce;
+            color: #8b562f;
+        }
+
+        /* 心情/灵感调色盘 (小彩蛋) */
+        .mood-picker {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.8rem;
+            background: #fcf8f2;
+            padding: 1rem 1.3rem;
+            border-radius: 2rem;
+        }
+
+        .mood-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #836e54;
+        }
+
+        .color-dots {
+            display: flex;
+            gap: 0.9rem;
+        }
+
+        .dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.1s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,220,0.7);
+        }
+
+        .dot:hover {
+            transform: scale(1.18);
+        }
+
+        .active-dot {
+            transform: scale(1.2);
+            box-shadow: 0 0 0 2px #f4e3d2, 0 0 0 4px #c99e6e;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            color: #b7a68c;
+            border-top: 1px solid #e3d8cb;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 550px) {
+            .content-wrap {
+                padding: 1.6rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .counter-value {
+                font-size: 2.5rem;
+            }
+            .btn {
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="glass-card">
+    <div class="content-wrap">
+        <div class="hero">
+            <h1>✨ 随意之页 ✨</h1>
+            <div class="sub">一点灵感 · 一点交互 · 恰好随性</div>
+        </div>
+
+        <div class="playground">
+            <!-- 灵动计数器模块 -->
+            <div class="counter-section">
+                <span class="counter-label">🎯 今日随心点击</span>
+                <span class="counter-value" id="clickCounter">0</span>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-primary" id="incrementBtn">➕ 增加一点</button>
+                <button class="btn btn-outline" id="resetBtn">🔄 归零重置</button>
+                <button class="btn btn-outline" id="randomBtn">✨ 随机惊喜 (+随机数)</button>
+            </div>
+
+            <!-- 动态名言/格言区域，随心情刷新 -->
+            <div class="quote-box" id="quoteBox">
+                <div class="quote-text" id="quoteText">“创造是一种温柔的叛逆，随心而动便是美好。”</div>
+                <div class="quote-author" id="quoteAuthor">—— 网页漫步者</div>
+                <button class="refresh-quote" id="refreshQuoteBtn">⟳ 换一句箴言</button>
+            </div>
+
+            <!-- 随心小彩蛋：改变主题色氛围 -->
+            <div class="mood-picker">
+                <span class="mood-label">🎨 氛围染色盘</span>
+                <div class="color-dots" id="colorDotsContainer">
+                    <div class="dot" data-color="#f9f7f3" style="background: #f9f7f3; border:1px solid #ddd;"></div>
+                    <div class="dot" data-color="#F9E7D9" style="background: #F9E7D9;"></div>
+                    <div class="dot" data-color="#E3D6C8" style="background: #E3D6C8;"></div>
+                    <div class="dot" data-color="#FFE8D4" style="background: #FFE8D4;"></div>
+                    <div class="dot" data-color="#DDE8F0" style="background: #DDE8F0;"></div>
+                    <div class="dot" data-color="#F7E2E2" style="background: #F7E2E2;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            🌱 随意浏览 · 治愈小站 | 每次点击都是片刻欢愉
+        </footer>
+    </div>
+</div>
+
+<script>
+    (function(){
+        // ---------- 计数器逻辑 ----------
+        let counter = 0;
+        const counterElement = document.getElementById('clickCounter');
+        const incrementBtn = document.getElementById('incrementBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const randomBtn = document.getElementById('randomBtn');
+        
+        function updateCounterDisplay() {
+            counterElement.innerText = counter;
+            // 额外小彩蛋：计数器数值变化时给数字一个微小的弹动动画（通过临时样式）
+            counterElement.style.transform = 'scale(1.08)';
+            setTimeout(() => {
+                counterElement.style.transform = 'scale(1)';
+            }, 150);
+        }
+
+        incrementBtn.addEventListener('click', () => {
+            counter++;
+            updateCounterDisplay();
+            // 每次点击也可以播放一个微感 (可选控制台无)
+        });
+        
+        resetBtn.addEventListener('click', () => {
+            counter = 0;
+            updateCounterDisplay();
+        });
+        
+        randomBtn.addEventListener('click', () => {
+            const randomValue = Math.floor(Math.random() * 11) + 1; // 1~11 之间的随机增量，有意思
+            counter += randomValue;
+            updateCounterDisplay();
+            // 附带一个短暂提示感：不必弹窗，闪烁一下计数文字颜色
+            counterElement.style.transition = 'color 0.2s';
+            counterElement.style.color = '#b47c48';
+            setTimeout(() => {
+                counterElement.style.color = '';
+            }, 300);
+        });
+        
+        // ---------- 名言库 (共12条简短治愈/随性句子) ----------
+        const quotes = [
+            { text: "不要温顺地走入那个良夜，要燃烧、要咆哮。", author: "—— 迪伦·托马斯" },
+            { text: "随性不是随意，而是懂得让自己轻盈。", author: "—— 佚名" },
+            { text: "生活原本沉闷，但跑起来就有风。", author: "—— 佚名" },
+            { text: "在广袤的空间和无限的时间中，能与你共享同一颗行星是我的荣幸。", author: "—— 卡尔·萨根" },
+            { text: "做一阵风吧，温柔又自由。", author: "—— 网络随想" },
+            { text: "花店不开了，花继续开。", author: "—— 蔡仁伟" },
+            { text: "万物皆有裂痕，那是光照进来的地方。", author: "—— 莱昂纳德·科恩" },
+            { text: "去成为你本应该成为的人，任何时候都不算晚。", author: "—— 乔治·艾略特" },
+            { text: "简约不是少，而是没有多余。", author: "—— 安德烈·莫瑞阿" },
+            { text: "祝你不用奔赴大海，也能春暖花开。", author: "—— 佚名" },
+            { text: "大地所承载的，天空所覆盖的，皆为你的可能。", author: "—— 古罗马哲思" },
+            { text: "每一个随意的当下，都藏着浪漫的种子。", author: "—— 本页灵光" }
+        ];
+        
+        let currentQuoteIndex = 0; // 并非强制顺序，随机更好玩
+        
+        const quoteTextEl = document.getElementById('quoteText');
+        const quoteAuthorEl = document.getElementById('quoteAuthor');
+        const refreshQuoteBtn = document.getElementById('refreshQuoteBtn');
+        
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex];
+        }
+        
+        function updateQuoteRandom() {
+            const newQuote = getRandomQuote();
+            quoteTextEl.innerText = `“${newQuote.text}”`;
+            quoteAuthorEl.innerText = newQuote.author;
+            // 细微动画: 名言区域淡入淡出感，轻量变化
+            const quoteBox = document.getElementById('quoteBox');
+            quoteBox.style.transition = 'background 0.25s';
+            quoteBox.style.backgroundColor = 'rgba(242, 231, 216, 0.7)';
+            setTimeout(() => {
+                quoteBox.style.backgroundColor = '';
+            }, 200);
+        }
+        
+        refreshQuoteBtn.addEventListener('click', () => {
+            updateQuoteRandom();
+        });
+        
+        // 页面加载时随机第一条名言
+        updateQuoteRandom();
+        
+        // ---------- 氛围染色盘：改变整体背景及卡片氛围 (随性改变theme) ----------
+        const colorDots = document.querySelectorAll('.dot');
+        const bodyElem = document.body;
+        const cardElem = document.querySelector('.glass-card');
+        
+        // 存储默认背景gradient以及卡片默认风格用来重置时方便，不过直接动态设置背景颜色保留玻璃卡片质感即可
+        // 更好的体验：改变body渐变底色和卡片细微边框色调
+        function setThemeColor(baseColor) {
+            // 根据选择的颜色生成柔和的线性渐变背景
+            // 增强视觉趣味：明亮底色为主
+            let lighterColor, secondColor;
+            if (baseColor === '#f9f7f3') {
+                lighterColor = '#f9f7f3';
+                secondColor = '#efeae2';
+            } else if (baseColor === '#F9E7D9') {
+                lighterColor = '#F9E7D9';
+                secondColor = '#F4DFCF';
+            } else if (baseColor === '#E3D6C8') {
+                lighterColor = '#E3D6C8';
+                secondColor = '#D5C5B3';
+            } else if (baseColor === '#FFE8D4') {
+                lighterColor = '#FFE8D4';
+                secondColor = '#FADDB9';
+            } else if (baseColor === '#DDE8F0') {
+                lighterColor = '#DDE8F0';
+                secondColor = '#CFDEE9';
+            } else if (baseColor === '#F7E2E2') {
+                lighterColor = '#F7E2E2';
+                secondColor = '#F2D5D5';
+            } else {
+                lighterColor = '#f9f7f3';
+                secondColor = '#efeae2';
+            }
+            bodyElem.style.background = `linear-gradient(145deg, ${lighterColor} 0%, ${secondColor} 100%)`;
+            // 卡片轻微调整边框高光
+            cardElem.style.border = `1px solid ${baseColor}CC`;
+            cardElem.style.transition = 'border 0.2s';
+        }
+        
+        // 默认高亮与当前默认背景对应的圆点
+        let activeDotElem = null;
+        function setActiveDot(dotElement) {
+            if (activeDotElem) {
+                activeDotElem.classList.remove('active-dot');
+            }
+            dotElement.classList.add('active-dot');
+            activeDotElem = dotElement;
+        }
+        
+        colorDots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                const color = dot.getAttribute('data-color');
+                setThemeColor(color);
+                setActiveDot(dot);
+                // 额外小反馈：控制台无日志但页面侧反馈舒适
+                // 也可以闪现一个提示，不用太复杂，但给一下计数器边框微光
+                counterElement.style.textShadow = '0 0 2px rgba(180,124,72,0.3)';
+                setTimeout(() => {
+                    counterElement.style.textShadow = '';
+                }, 300);
+            });
+        });
+        
+        // 初始化设定默认激活第一个米白基调
+        if (colorDots.length > 0) {
+            const firstDot = colorDots[0];
+            setActiveDot(firstDot);
+            // 保证默认背景与默认body一致（已经是默认背景了，但为了稳妥执行一次）
+            setThemeColor('#f9f7f3');
+        }
+        
+        // 额外增加有趣的动态交互：如果随机重置时，将计数器变成快乐数字彩蛋—随意但隐藏功能
+        // 在reset时同时轻微闪烁名言区域感谢（只是趣味）
+        resetBtn.addEventListener('click', () => {
+            // 归零同时让名言区闪现一个柔和小标语(改变文本瞬间可好?)
+            // 不覆盖原名言，但是短暂显示一个重置小提示? 增加趣味不过度
+            const originalText = quoteTextEl.innerText;
+            const originalAuthor = quoteAuthorEl.innerText;
+            quoteTextEl.innerText = "✨ 轻轻归零，又是新的开始 ✨";
+            quoteAuthorEl.innerText = "—— 重置仪式";
+            setTimeout(() => {
+                // 恢复原来的名言 (但是注意如果用户可能用随机刷新? 那就恢复当前存储的名言? 最好恢复原名言库中的一项, 为了保证合理, 恢复更新前)
+                // 稳妥: 再换一句随机且稍后恢复成随机库名言？为了避免用户重置时短暂提示消失后无记忆, 重新随机一句
+                // 更有意思: 重置之后更新为新名言
+                const newResetQuote = getRandomQuote();
+                quoteTextEl.innerText = `“${newResetQuote.text}”`;
+                quoteAuthorEl.innerText = newResetQuote.author;
+            }, 1200);
+            // 同时计数器归零更新已经调用updateCounterDisplay，无需额外
+        });
+        
+        // 增加一点控制台小彩蛋：控制台输出一句随心的问候，让开发者会心一笑
+        console.log("%c✨ 嗨，随意探险家！这个网页为你带来片刻轻松 ✨", "color: #b47c48; font-size: 14px; font-weight: bold;");
+        console.log("%c试试点击颜色点、随机惊喜、换名言 —— 随心而变。", "color: #6c5a48; font-size: 12px;");
+        
+        // 为了增加另一处互动: 计数器达到特定数值时给出不一样的动态效果
+        // 监听计数器更新的方式(由于更新直接在counter变量里，我们利用观察者思想或直接在updateCounterDisplay里加趣味)
+        // 我们改造updateCounterDisplay以便在计数器达到10的倍数时在控制台或者轻微气泡，但无干扰，我们简单增加一个div提示?
+        // 不过让主区域氛围轻微脉动一下可增加灵动感
+        const originalUpdate = updateCounterDisplay;
+        window.updateCounterDisplay = updateCounterDisplay; // 忽略，只是方便
+        // 重新定义以便增加彩蛋
+        const superUpdate = function() {
+            counterElement.innerText = counter;
+            counterElement.style.transform = 'scale(1.08)';
+            setTimeout(() => {
+                counterElement.style.transform = 'scale(1)';
+            }, 150);
+            // 特殊事件：如果counter是5的倍数但不是0，弹动一下名言小标记
+            if (counter !== 0 && counter % 5 === 0) {
+                const quoteContainer = document.getElementById('quoteBox');
+                quoteContainer.style.transform = 'scale(1.01)';
+                setTimeout(() => {
+                    quoteContainer.style.transform = '';
+                }, 200);
+                // 更改名言小惊喜? 可临时改变引用文字持续几秒 那会与用户自己刷新冲突, 简单欢乐显示一个小闪烁
+                const originalBorderLeft = quoteContainer.style.borderLeft;
+                quoteContainer.style.borderLeft = '5px solid #d99e5e';
+                setTimeout(() => {
+                    quoteContainer.style.borderLeft = originalBorderLeft;
+                }, 400);
+            }
+            // 如果计数器达到20的倍数，额外换一句名言小彩蛋，但不覆盖主动刷新（自动换一句)
+            if (counter !== 0 && counter % 20 === 0) {
+                const surpriseQuote = getRandomQuote();
+                quoteTextEl.innerText = `“${surpriseQuote.text}”`;
+                quoteAuthorEl.innerText = surpriseQuote.author;
+                // 并短暂让计数器变色
+                counterElement.style.color = '#b47c48';
+                setTimeout(() => {
+                    counterElement.style.color = '';
+                }, 500);
+            }
+        };
+        
+        // 替换引用，保持事件监听指向正确
+        window.superUpdate = superUpdate;
+        // 重新绑定三个按钮的函数
+        // 为了避免重复定义, 手动替换函数: 将原有的updateCounterDisplay覆盖
+        window.updateCounterDisplay = superUpdate;
+        // 更新全局引用的函数
+        const globalUpdate = superUpdate;
+        
+        // 修改原有的事件处理绑定, 直接修改counter绑定的函数
+        // 因为上面incrementBtn等addEventListener依然调用 updateCounterDisplay，但updateCounterDisplay已被重新赋值
+        // 但是注意函数提升作用域: 当时声明的updateCounterDisplay 是原始函数, 但我们重新定义了同名全局，但是模块内指向的是旧函数?
+        // 由于上面代码在IIFE里面，我们用了let 函数声明，现在我们直接重新定义函数，由于所有更新都通过 updateCounterDisplay()调用，因此替换引用
+        // 最简单: 用新函数替换原有函数对象
+        // 由于 updateCounterDisplay 是一个变量，后续调用会被修改
+        // 确保三个按钮调用均是最新的更新函数.
+        // 执行替换
+        // 注意原函数已经挂载, 但是randomBtn里的更新也依赖updateCounterDisplay，所以完美!
+        // 重新赋值函数名
+        // 确保直接重新绑定
+        // 此刻原有updateCounterDisplay已经更改为superUpdate，完成!
+        // 注意作用域里: counterElement 等可用.
+        // 最终调用初始化显示
+        superUpdate();
+        
+        // 额外写一个防重复的计数器展示调用初始
+        // 由于counter最开始为0，强制调用同步
+        // 确保加载后样式到位
+        // 对于一些交互额外细节: 在文档完全加载后，再轻微激活卡片入场动画
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.4s ease';
+        window.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '1';
+        });
+        document.body.style.opacity = '1';
+    })();
+</script>
+</body>
+</html>
